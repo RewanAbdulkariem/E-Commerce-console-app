@@ -58,20 +58,19 @@ public class DefaultUserManagementService implements UserManagementService {
 
     @Override
     public User[] getUsers() {
-        User[] currentUsers = new User[userIndex];
-        for (int i = 0; i < userIndex; i++) {
-            currentUsers[i] = users[i];
-        }
-        return currentUsers;
+        return Arrays.copyOf(users, userIndex);
     }
 
     @Override
     public User getUserByEmail(String userEmail) {
-        if (userEmail == null)
+        if (userEmail == null || userEmail.isEmpty())
             return null;
         for (int i = 0; i < userIndex; i++) {
-            if(users[i].getEmail().equalsIgnoreCase(userEmail))
+            if (users[i] != null &&
+                    users[i].getEmail() != null &&
+                    users[i].getEmail().equalsIgnoreCase(userEmail.trim())) {
                 return users[i];
+            }
         }
         return null;
     }

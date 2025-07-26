@@ -3,8 +3,6 @@
 package menu.impl;
 import context.ApplicationContext;
 import menu.Menu;
-import model.Order;
-import service.impl.DefaultOrderManagementService;
 
 import java.util.Scanner;
 

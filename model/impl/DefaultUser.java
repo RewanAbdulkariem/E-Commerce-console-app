@@ -12,14 +12,17 @@ public class DefaultUser implements User {
     private String password;
     private String email;
 
-    public DefaultUser(String firstName, String lastName, String email, String password) {
+    {
         this.id = ++idCounter;
+    }
+    public DefaultUser(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
     }
-
+    public DefaultUser() {
+    }
     @Override
     public String getFirstName() {
         return firstName;
@@ -47,11 +50,17 @@ public class DefaultUser implements User {
 
     @Override
     public void setPassword(String newPassword) {
+        if (newPassword == null) {
+            return;
+        }
         this.password = newPassword;
     }
 
     @Override
     public void setEmail(String newEmail) {
+        if (newEmail == null || newEmail.isEmpty()) {
+            return;
+        }
         this.email = newEmail;
     }
 

@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class SignUpMenu implements Menu {
     private ApplicationContext context;
     private UserManagementService userService;
-    User user;
 
     public SignUpMenu() {
         this.context = ApplicationContext.getInstance();
@@ -37,11 +36,11 @@ public class SignUpMenu implements Menu {
         String password = sc.nextLine();
 
         System.out.print("Enter your email: ");
-        sc = new Scanner(System.in);
         String email = sc.nextLine();
 
-        user = new DefaultUser(firstName, lastName, email, password);
+        User user = new DefaultUser(firstName, lastName, email, password);
         String errorMessage = userService.registerUser(user);
+
         if (errorMessage == null || errorMessage.isEmpty()) {
             context.setLoggedInUser(user);
             System.out.println("New user is created");
